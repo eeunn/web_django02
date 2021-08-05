@@ -23,17 +23,20 @@
 
     <div class="container my-5">
         {% for article in article_list %}
+
             <div>
                 <a href="{% url 'articleapp:detail' pk=article.pk %}">
                     <img src="{{ article.image.url }}" alt="">
                 </a>
                 <span class="NNS_B m-2">{{ article.title }}</span>
             </div>
+
         {% endfor %}
     </div>
 
 
     <script src="{% static 'js/magicgrid.js' %}"></script>
 
+    {% include 'snippets/pagination.html' %}
 
 {% endblock %}

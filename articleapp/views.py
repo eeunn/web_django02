@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 # Create your views here.
@@ -10,8 +11,8 @@ from articleapp.forms import ArticleCreationForm
 from articleapp.models import Article
 
 
-@method_decorator(article_ownership_required, 'get')
-@method_decorator(article_ownership_required, 'post')
+@method_decorator(login_required, 'get')
+@method_decorator(login_required, 'post')
 class ArticleCreateView(CreateView):
     model = Article
     form_class = ArticleCreationForm
@@ -56,7 +57,7 @@ class ArticleListView(ListView):
     model = Article
     context_object_name = 'article_list'
     template_name = 'articleapp/list.html'
-    paginate_by = 20
+    paginate_by = 2
 
 
 
