@@ -31,7 +31,8 @@ def hello_world(request):
     else:
         hello_world_list = HelloWorld.objects.all()
         return render(request, 'accountapp/hello_world.html',
-                      context={'hello_world_list':hello_world_list})
+                      context={'hello_world_list': hello_world_list})
+
 
 class AccountCreateView(CreateView):
     model = User
@@ -40,7 +41,6 @@ class AccountCreateView(CreateView):
 
     def get_success_url(self):
         return reverse('accountapp:detail', kwargs={'pk': self.object.pk})
-
 
 
 class AccountDetailView(DetailView, MultipleObjectMixin):
@@ -55,7 +55,9 @@ class AccountDetailView(DetailView, MultipleObjectMixin):
         return super().get_context_data(object_list=article_list,
                                         **kwargs)
 
+
 has_ownership = [login_required, account_ownership_required]
+
 
 @method_decorator(has_ownership, 'get')
 @method_decorator(has_ownership, 'post')
@@ -76,4 +78,3 @@ class AccountDeleteView(DeleteView):
     context_object_name = 'target_user'
     success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/delete.html'
-
