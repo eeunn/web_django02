@@ -8,20 +8,23 @@
             {# 제목 / 글쓴이 / 날짜 #}
             <h1 class="NNS_B">{{ target_article.title }}</h1>
             <div>
-                <a href="{% url 'likeapp:article_like' article_pk=target_article.pk %}" class="material-icons">
+                <a href="{% url 'likeapp:article_like' article_pk=target_article.pk %}" class="material-icons" style="vertical-align: middle; color: #f77">
                     favorite
                 </a>
-                {{ target_article.like }}
+                <span style="vertical-align: middle">
+                    {{ target_article.like }}
+                </span>
+
             </div>
             <h4>{{ target_article.writer.profile.nickname }}</h4>
             <p>{{ target_article.created_at }}</p>
         </div>
         <hr>
         <div class="my-5">
+
             {# 게시글 내용 #}
             <img src="{{ target_article.image.url }}" alt="" class="article_image">
-            <div class="article_content">file.nickname }}</h4>
-            <p>{{ target_article.created_at }
+            <div class="article_content">
                 {{ target_article.content }}
             </div>
 
